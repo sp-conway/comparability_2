@@ -1,0 +1,66 @@
+KEY FOR CONFIGURATIONS
+KINDA SLOPPY NOTES
+NOTE THAT X DISTANCE IS CONSTANT
+If IT LOOKS LIKE IT'S NOT HERE, IT IS
+
+
+1) x x x - all three options are easily compared
+
+1.1: all 3 upper left
+
+XXX
+   
+
+1.2 all 3 middle
+
+
+	XXX
+1.3 all 3 bottom right
+
+		
+		
+		XXX
+
+2) 2 options easily compared
+
+Two options are easily compared (counter balanced, but with an equal number of overall trials as 1 and 3).
+2.1 - 1&2 easily compared
+2.11 
+
+	X
+	   XX
+
+2.12
+      	    X
+	XX
+
+2.2 - 2&3 easily compared
+
+2.21
+    	XX
+      X
+2.22 
+     X 
+       XX
+
+
+3) no options easily compared
+3.1
+      X		
+	X
+	  X
+
+3.2
+          X
+     	X
+      X
+
+3) triangle configuration
+
+4.1
+	X
+      X   X
+
+4.2 
+      X   X
+	X

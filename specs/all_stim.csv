@@ -1,0 +1,9 @@
+name,diag,distance,w,h,area
+h,lower,NA,57,133,7581
+w,lower,NA,133,57,7581
+d,lower,35,70,70,4900
+d,lower,20,78,78,6084
+h,upper,NA,125,200,25000
+w,upper,NA,200,125,25000
+d,upper,35,127,127,16129
+d,upper,20,141,141,19881
