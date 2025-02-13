@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
-Name=comp_exp
-Exec=/bin/bash -c "~/experiments/comparability/experiment_code/run_experiment.sh"
+Name=comp_exp2
+Exec=/bin/bash -c "~/experiments/comparability_2/experiment_code/run_experiment.sh"
 Icon=utilities-terminal
 Terminal=true
 Type=Application
