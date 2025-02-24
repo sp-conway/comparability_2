@@ -2,7 +2,7 @@
 # UPDATED TO BE HARDER
 # RATHER THAN 35 and 20, DISTANCE = 35 & 20
 # catch & fillers are created on the fly during experiment
-# winter 2025
+# spring 2025
 # setup ======================================================================
 # clear environment
 rm(list=ls())
