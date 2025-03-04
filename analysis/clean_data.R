@@ -1,3 +1,4 @@
+# cleaning comparability data
 rm(list=ls())
 library(tidyverse)
 library(here)
@@ -11,7 +12,9 @@ f_all <- here("data","raw") %>%
 
 clean <- function(f,n_trial=840, catch_filter=.8){ # 210 trials per block, 4 blocks, finished ppt has 840 trials
   print(f)
-  d <- data.table::fread(f) %>%
+  d <- data.table::fread(f)
+  if(nrow(d)==0) return(invisible())
+  d <- d %>%
     filter(effect %in% c("critical","catch","filler_random","filler_square")) %>%
     select(participant, blocks.thisN,
            trials.thisN,
