@@ -38,7 +38,7 @@ Two options are easily compared (counter balanced, but with an equal number of o
 
 2.21
     	XX
-      X
+         X
 2.22 
      X 
        XX
@@ -53,14 +53,14 @@ Two options are easily compared (counter balanced, but with an equal number of o
 3.2
           X
      	X
-      X
+   X
 
 3) triangle configuration
 
 4.1
-	X
-      X   X
+	X        X
+      X  
 
 4.2 
-      X   X
-	X
+      X   
+	X       X

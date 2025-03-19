@@ -13,7 +13,7 @@ f_all <- here("data","raw") %>%
 clean <- function(f,n_trial=840, catch_filter=.8){ # 210 trials per block, 4 blocks, finished ppt has 840 trials
   print(f)
   d <- data.table::fread(f)
-  if(nrow(d)==0) return(invisible())
+  if(nrow(d) < n_trial) return(invisible())
   d <- d %>%
     filter(effect %in% c("critical","catch","filler_random","filler_square")) %>%
     select(participant, blocks.thisN,
@@ -45,33 +45,31 @@ clean <- function(f,n_trial=840, catch_filter=.8){ # 210 trials per block, 4 blo
              effect=="critical"~str_sub(order,choice,choice), # figure out choices in critical trials
              T~NA_character_
            ))
-  if(nrow(d)<n_trial){
-    return(invisible())
-  }else{
-    d$a_max <- pmap_int(list(d$h_1*d$w_1,d$h_2*d$w_2,d$h_3*d$w_3),function(x,y,z) which.max(c(x,y,z)))
-    dd <- d %>% # figure out correct on trial by trial basis
-      mutate(correct=case_when(
-        effect=="critical" & choice_name !="d" ~ 1,
-        effect=="critical" & choice_name =="d" ~ 0,
-        effect!="critical" & choice == a_max ~ 1,
-        effect!="critical" & choice != a_max ~ 0
-      )) %>%
-      select(-a_max) %>%
-      relocate(choice_name,.after=choice) %>%
-      relocate(rt, .before=correct)
-    
-    # FILTER OUT FAST & SLOW RTS
-    ddd <- dd %>% # filter out RTs <100ms or >10000ms
-      filter(rt>=.1 & rt<=10)
-    
-    # Check to see proportion correct on catch trials
-    # only want to retain data if they get at least 80% of catch trials correct
-    p_corr <- ddd %>%
-      filter(str_detect(effect,"catch")) %>%
-      summarise(p_corr=mean(correct)) %>%
-      pull(p_corr)
-    ifelse(p_corr>=catch_filter, return(ddd), return(invisible()))
-  }
+  d$a_max <- pmap_int(list(d$h_1*d$w_1,d$h_2*d$w_2,d$h_3*d$w_3),function(x,y,z) which.max(c(x,y,z)))
+  dd <- d %>% # figure out correct on trial by trial basis
+    mutate(correct=case_when(
+      effect=="critical" & choice_name !="d" ~ 1,
+      effect=="critical" & choice_name =="d" ~ 0,
+      effect!="critical" & choice == a_max ~ 1,
+      effect!="critical" & choice != a_max ~ 0
+    )) %>%
+    select(-a_max) %>%
+    relocate(choice_name,.after=choice) %>%
+    relocate(rt, .before=correct)
+  
+  # FILTER OUT FAST & SLOW RTS
+  ddd <- dd %>% # filter out RTs <100ms or >10000ms
+    filter(rt>=.1 & rt<=10)
+  
+  # Check to see proportion correct on catch trials
+  # only want to retain data if they get at least 80% of catch trials correct
+  p_corr <- ddd %>%
+    filter(str_detect(effect,"catch")) %>%
+    summarise(p_corr=mean(correct)) %>%
+    pull(p_corr)
+  
+  # ONLY RETURN DATA IF PPT PASSED CATCH TRIALS
+  ifelse(p_corr>=catch_filter, return(ddd), return(invisible()))
 }
 
 d <- map(f_all, clean) %>%
