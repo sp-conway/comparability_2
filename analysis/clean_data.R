@@ -68,11 +68,15 @@ clean <- function(f,n_trial=840, catch_filter=.8){ # 210 trials per block, 4 blo
     summarise(p_corr=mean(correct)) %>%
     pull(p_corr)
   
-  # ONLY RETURN DATA IF PPT PASSED CATCH TRIALS
-  ifelse(p_corr>=catch_filter, return(ddd), return(invisible()))
+  dddd <- ddd %>%
+    mutate(pass=p_corr>=catch_filter)
+  return(dddd)
 }
 
 d <- map(f_all, clean) %>%
   list_rbind()
-cat("\nN=",length(unique(d$participant)),"\n",sep="")
-write_csv(d, file=here("data","clean","data.csv"))
+cat("\nN initial=",length(unique(d$participant)),"\n",sep="")
+dd <- d %>%
+  filter(pass)
+cat("\nN final=",length(unique(dd$participant)),"\n",sep="")
+write_csv(dd, file=here("data","clean","data.csv"))

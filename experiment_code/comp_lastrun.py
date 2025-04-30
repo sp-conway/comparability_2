@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Fri 07 Feb 2025 01:42:59 PM EST
+    on Tue Apr 29 09:51:32 2025
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -126,7 +126,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/home/shop/experiments/comparability/experiment_code/comp_lastrun.py',
+        originPath='/Users/seanconway/Research/Perceptual_CE/comparability_2/experiment_code/comp_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -352,9 +352,6 @@ def pauseExperiment(thisExp, win=None, timers=[], playbackComponents=[]):
         )
     # run a while loop while we wait to unpause
     while thisExp.status == PAUSED:
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=['escape']):
-            endExperiment(thisExp, win=win)
         # sleep 1ms so other threads can execute
         clock.time.sleep(0.001)
     # if stop was requested while paused, quit
@@ -726,34 +723,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
-    print_config = visual.TextStim(win=win, name='print_config',
-        text='',
-        font='Arial',
-        pos=(0, 400), draggable=False, height=40.0, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=1.0, 
-        languageStyle='LTR',
-        depth=-7.0);
-    print_effect = visual.TextStim(win=win, name='print_effect',
-        text='',
-        font='Arial',
-        pos=(0, 350), draggable=False, height=20.0, wrapWidth=None, ori=0.0, 
-        color=[0.0902, -1.0000, -1.0000], colorSpace='rgb', opacity=1.0, 
-        languageStyle='LTR',
-        depth=-8.0);
-    print_config_1 = visual.TextStim(win=win, name='print_config_1',
-        text='',
-        font='Arial',
-        pos=(0, 300), draggable=False, height=40.0, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=1.0, 
-        languageStyle='LTR',
-        depth=-9.0);
-    print_distance = visual.TextStim(win=win, name='print_distance',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=40.0, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=1.0, 
-        languageStyle='LTR',
-        depth=-10.0);
     rect_choice = keyboard.Keyboard(deviceName='rect_choice')
     
     # --- Initialize components for Routine "end_block" ---
@@ -1001,10 +970,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     mouse.time.append(mouse.mouseClock.getTime())
                     if gotValidClick:
                         continueRoutine = False  # end routine on response
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return
@@ -1108,10 +1073,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return
@@ -1224,10 +1185,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update status
                 welcome_text.status = FINISHED
                 welcome_text.setAutoDraw(False)
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return
@@ -1403,7 +1360,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(key_resp.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(key_resp.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if key_resp.status == STARTED and not waitOnFlip:
-                theseKeys = key_resp.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = key_resp.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
                 _key_resp_allKeys.extend(theseKeys)
                 if len(_key_resp_allKeys):
                     key_resp.keys = _key_resp_allKeys[-1].name  # just the last key pressed
@@ -1411,10 +1368,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     key_resp.duration = _key_resp_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -1566,7 +1519,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(key_resp_2.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(key_resp_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if key_resp_2.status == STARTED and not waitOnFlip:
-                theseKeys = key_resp_2.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = key_resp_2.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
                 _key_resp_2_allKeys.extend(theseKeys)
                 if len(_key_resp_2_allKeys):
                     key_resp_2.keys = _key_resp_2_allKeys[-1].name  # just the last key pressed
@@ -1574,10 +1527,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     key_resp_2.duration = _key_resp_2_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -1849,7 +1798,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(key_resp_3.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(key_resp_3.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if key_resp_3.status == STARTED and not waitOnFlip:
-                theseKeys = key_resp_3.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = key_resp_3.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
                 _key_resp_3_allKeys.extend(theseKeys)
                 if len(_key_resp_3_allKeys):
                     key_resp_3.keys = _key_resp_3_allKeys[-1].name  # just the last key pressed
@@ -1877,10 +1826,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if instructions_3_text_4.status == STARTED:
                 # update params
                 pass
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -2052,7 +1997,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(key_resp_4.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(key_resp_4.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if key_resp_4.status == STARTED and not waitOnFlip:
-                theseKeys = key_resp_4.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = key_resp_4.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
                 _key_resp_4_allKeys.extend(theseKeys)
                 if len(_key_resp_4_allKeys):
                     key_resp_4.keys = _key_resp_4_allKeys[-1].name  # just the last key pressed
@@ -2060,10 +2005,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     key_resp_4.duration = _key_resp_4_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -2215,7 +2156,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(key_resp_5.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(key_resp_5.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if key_resp_5.status == STARTED and not waitOnFlip:
-                theseKeys = key_resp_5.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = key_resp_5.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
                 _key_resp_5_allKeys.extend(theseKeys)
                 if len(_key_resp_5_allKeys):
                     key_resp_5.keys = _key_resp_5_allKeys[-1].name  # just the last key pressed
@@ -2223,10 +2164,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     key_resp_5.duration = _key_resp_5_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -2357,7 +2294,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             win.callOnFlip(key_resp_6.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_6.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if key_resp_6.status == STARTED and not waitOnFlip:
-            theseKeys = key_resp_6.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = key_resp_6.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
             _key_resp_6_allKeys.extend(theseKeys)
             if len(_key_resp_6_allKeys):
                 key_resp_6.keys = _key_resp_6_allKeys[-1].name  # just the last key pressed
@@ -2365,10 +2302,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 key_resp_6.duration = _key_resp_6_allKeys[-1].duration
                 # a response ends the routine
                 continueRoutine = False
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return
@@ -2419,7 +2352,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # set up handler to look after randomisation of conditions etc
     blocks = data.TrialHandler2(
         name='blocks',
-        nReps=3.0, 
+        nReps=1.0, 
         method='sequential', 
         extraInfo=expInfo, 
         originPath=-1, 
@@ -2756,10 +2689,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
-                
-                # check for quit (typically the Esc key)
-                if defaultKeyboard.getKeys(keyList=["escape"]):
-                    thisExp.status = FINISHED
                 if thisExp.status == FINISHED or endExpNow:
                     endExperiment(thisExp, win=win)
                     return
@@ -2803,7 +2732,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # create an object to store info about Routine choice_trial
             choice_trial = data.Routine(
                 name='choice_trial',
-                components=[r_1, r_2, r_3, r_1_label, r_2_label, r_3_label, prompt, print_config, print_effect, print_config_1, print_distance, rect_choice],
+                components=[r_1, r_2, r_3, r_1_label, r_2_label, r_3_label, prompt, rect_choice],
             )
             choice_trial.status = NOT_STARTED
             continueRoutine = True
@@ -2819,14 +2748,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             r_2_label.setPos((r_2_txt_x, r_2_txt_y))
             r_3_label.setPos((r_3_txt_x, r_3_txt_y))
             prompt.setPos((prompt_x_loc, prompt_y_loc))
-            print_config.setColor([0.0902, -1.0000, -1.0000], colorSpace='rgb')
-            print_config.setText(config_tmp)
-            print_effect.setText(effect)
-            print_config_1.setColor([0.0902, -1.0000, -1.0000], colorSpace='rgb')
-            print_config_1.setText(config_tmp_1)
-            print_distance.setColor([0.0902, -1.0000, -1.0000], colorSpace='rgb')
-            print_distance.setPos((0, 250))
-            print_distance.setText(distance)
             # create starting attributes for rect_choice
             rect_choice.keys = []
             rect_choice.rt = []
@@ -3004,86 +2925,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update params
                     pass
                 
-                # *print_config* updates
-                
-                # if print_config is starting this frame...
-                if print_config.status == NOT_STARTED and tThisFlip >= isi-frameTolerance:
-                    # keep track of start time/frame for later
-                    print_config.frameNStart = frameN  # exact frame index
-                    print_config.tStart = t  # local t and not account for scr refresh
-                    print_config.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(print_config, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'print_config.started')
-                    # update status
-                    print_config.status = STARTED
-                    print_config.setAutoDraw(True)
-                
-                # if print_config is active this frame...
-                if print_config.status == STARTED:
-                    # update params
-                    pass
-                
-                # *print_effect* updates
-                
-                # if print_effect is starting this frame...
-                if print_effect.status == NOT_STARTED and tThisFlip >= isi-frameTolerance:
-                    # keep track of start time/frame for later
-                    print_effect.frameNStart = frameN  # exact frame index
-                    print_effect.tStart = t  # local t and not account for scr refresh
-                    print_effect.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(print_effect, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'print_effect.started')
-                    # update status
-                    print_effect.status = STARTED
-                    print_effect.setAutoDraw(True)
-                
-                # if print_effect is active this frame...
-                if print_effect.status == STARTED:
-                    # update params
-                    pass
-                
-                # *print_config_1* updates
-                
-                # if print_config_1 is starting this frame...
-                if print_config_1.status == NOT_STARTED and tThisFlip >= isi-frameTolerance:
-                    # keep track of start time/frame for later
-                    print_config_1.frameNStart = frameN  # exact frame index
-                    print_config_1.tStart = t  # local t and not account for scr refresh
-                    print_config_1.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(print_config_1, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'print_config_1.started')
-                    # update status
-                    print_config_1.status = STARTED
-                    print_config_1.setAutoDraw(True)
-                
-                # if print_config_1 is active this frame...
-                if print_config_1.status == STARTED:
-                    # update params
-                    pass
-                
-                # *print_distance* updates
-                
-                # if print_distance is starting this frame...
-                if print_distance.status == NOT_STARTED and tThisFlip >= isi-frameTolerance:
-                    # keep track of start time/frame for later
-                    print_distance.frameNStart = frameN  # exact frame index
-                    print_distance.tStart = t  # local t and not account for scr refresh
-                    print_distance.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(print_distance, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'print_distance.started')
-                    # update status
-                    print_distance.status = STARTED
-                    print_distance.setAutoDraw(True)
-                
-                # if print_distance is active this frame...
-                if print_distance.status == STARTED:
-                    # update params
-                    pass
-                
                 # *rect_choice* updates
                 waitOnFlip = False
                 
@@ -3103,7 +2944,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     win.callOnFlip(rect_choice.clock.reset)  # t=0 on next screen flip
                     win.callOnFlip(rect_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
                 if rect_choice.status == STARTED and not waitOnFlip:
-                    theseKeys = rect_choice.getKeys(keyList=['1','2','3'], ignoreKeys=["escape"], waitRelease=False)
+                    theseKeys = rect_choice.getKeys(keyList=['1','2','3'], ignoreKeys=None, waitRelease=False)
                     _rect_choice_allKeys.extend(theseKeys)
                     if len(_rect_choice_allKeys):
                         rect_choice.keys = _rect_choice_allKeys[-1].name  # just the last key pressed
@@ -3111,10 +2952,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         rect_choice.duration = _rect_choice_allKeys[-1].duration
                         # a response ends the routine
                         continueRoutine = False
-                
-                # check for quit (typically the Esc key)
-                if defaultKeyboard.getKeys(keyList=["escape"]):
-                    thisExp.status = FINISHED
                 if thisExp.status == FINISHED or endExpNow:
                     endExperiment(thisExp, win=win)
                     return
@@ -3243,10 +3080,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update status
                     end_block_text.status = FINISHED
                     end_block_text.setAutoDraw(False)
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
             if thisExp.status == FINISHED or endExpNow:
                 endExperiment(thisExp, win=win)
                 return
@@ -3292,7 +3125,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             routineTimer.addTime(-15.000000)
         thisExp.nextEntry()
         
-    # completed 3.0 repeats of 'blocks'
+    # completed 1.0 repeats of 'blocks'
     
     if thisSession is not None:
         # if running in a Session with a Liaison client, send data up to now
@@ -3380,7 +3213,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             win.callOnFlip(key_resp_7.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_7.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if key_resp_7.status == STARTED and not waitOnFlip:
-            theseKeys = key_resp_7.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = key_resp_7.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
             _key_resp_7_allKeys.extend(theseKeys)
             if len(_key_resp_7_allKeys):
                 key_resp_7.keys = _key_resp_7_allKeys[-1].name  # just the last key pressed
@@ -3388,10 +3221,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 key_resp_7.duration = _key_resp_7_allKeys[-1].duration
                 # a response ends the routine
                 continueRoutine = False
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return
@@ -3521,7 +3350,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             win.callOnFlip(end_debrief.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(end_debrief.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if end_debrief.status == STARTED and not waitOnFlip:
-            theseKeys = end_debrief.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = end_debrief.getKeys(keyList=['space'], ignoreKeys=None, waitRelease=False)
             _end_debrief_allKeys.extend(theseKeys)
             if len(_end_debrief_allKeys):
                 end_debrief.keys = _end_debrief_allKeys[-1].name  # just the last key pressed
@@ -3529,10 +3358,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 end_debrief.duration = _end_debrief_allKeys[-1].duration
                 # a response ends the routine
                 continueRoutine = False
-        
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
         if thisExp.status == FINISHED or endExpNow:
             endExperiment(thisExp, win=win)
             return

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Thu 13 Feb 2025 02:58:37 PM EST
+    on Tue Apr 29 10:04:01 2025
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -126,7 +126,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/home/shop/experiments/comparability_2/experiment_code/comp.py',
+        originPath='/Users/seanconway/Research/Perceptual_CE/comparability_2/experiment_code/comp.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -636,7 +636,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-1.0);
     instructions_4_text_2 = visual.TextStim(win=win, name='instructions_4_text_2',
-        text='There will be 4 blocks of trials. There will be a short break in between each block.',
+        text='There will be 3 blocks of trials. There will be a short break in between each block.',
         font='Arial',
         pos=(0, 0), draggable=False, height=35.0, wrapWidth=None, ori=0.0, 
         color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb', opacity=None, 

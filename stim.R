@@ -83,15 +83,16 @@ all_stim <- tibble(
 # plotting ======================================================================
 p <- all_stim %>%
   mutate(name=toupper(name)) %>%
-  ggplot(aes(w,h,col=name))+
-  geom_point(size=2.5,alpha=.5)+
+  ggplot(aes(w,h,col=diag))+
+  geom_text(aes(label=name))+
   labs(x="Width",y="Height")+
-  scale_color_discrete(name="Stimulus")+
+  scale_color_discrete(name="Diagonal")+
   scale_x_continuous(breaks=c(0,150,300))+
   scale_y_continuous(breaks=c(0,150,300))+
   coord_fixed(xlim=c(0,300),ylim=c(0,300))+
-  ggthemes::theme_few()
-p
+  ggthemes::theme_few()+
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
 
 # saving stim ======================================================================
 p

@@ -25,24 +25,15 @@ XXX
 
 Two options are easily compared (counter balanced, but with an equal number of overall trials as 1 and 3).
 2.1 - 1&2 easily compared
+# 2.11 - stimuli 1 and 2 are comparable, but placed in upper left of screen
 2.11 
 
-	X
-	   XX
+	XX
+	   X
 
 2.12
-      	    X
+     X
 	XX
-
-2.2 - 2&3 easily compared
-
-2.21
-    	XX
-         X
-2.22 
-     X 
-       XX
-
 
 3) no options easily compared
 3.1
@@ -64,3 +55,14 @@ Two options are easily compared (counter balanced, but with an equal number of o
 4.2 
       X   
 	X       X
+
+# NOTE THIS CONDITION DIDN'T ACTUALLY GET RUN
+2.2 - 2&3 easily compared
+
+2.21
+    	XX
+    X
+2.22 
+     X 
+       XX
+	
