@@ -58,6 +58,7 @@ prop_corr %>%
   ungroup() %>%
   ggplot(aes(config,m))+
   geom_col(fill="lightblue")+
+  geom_point(data=prop_corr,aes(config,pcorr),alpha=.2)+
   geom_errorbar(aes(ymin=lower,ymax=upper),width=.2)+
   labs(x="configuration",y="mean prop. correct")+
   scale_y_continuous(limits=c(0,1))+
@@ -89,7 +90,6 @@ ggsave(filename=here("analysis","plots","mean_choices_all.jpeg"),width=6,height=
 # choices by configuration, td distance, collapsing across alignment ==============================================================
 # mainly want to make sure decoy is chosen enough
 d %>%
-  filter(config!="triangle") %>%
   compute_props(config, distance) %>%
   group_by(config, distance, choice_name) %>%
   summarise(m=mean(prop),
@@ -97,17 +97,18 @@ d %>%
             lower=m-se,
             upper=m+se) %>%
   ungroup() %>%
+  rename(tdd=distance) %>%
   ggplot(aes(config, m, fill=choice_name))+
   geom_col(position="dodge",width=.5)+
   geom_errorbar(aes(ymin=lower,ymax=upper),position = position_dodge(.5),width=.2)+
   scale_y_continuous(limits=c(0,.6),breaks = seq(0,.6,.1))+
-  facet_grid(distance~.,labeller = label_both)+
+  facet_grid(tdd~.,labeller = label_both)+
   ggsci::scale_fill_startrek(name="choice")+
   labs(y="mean choice prop.",x="configuration")+
   ggthemes::theme_few()+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=10))
 ggsave(filename=here("analysis","plots","crit_mean_choice_by_config_distance.jpeg"),
-       width=8,height=6)
+       width=5,height=4)
 
 # new new analysis ===============================================================
 # 2.1 - 1&2 easily compared
@@ -240,3 +241,84 @@ post_plot <- ggplot(post, aes(mu))+
         text = element_text(size=16))
 post_plot
 ggsave(filename=here("analysis","plots","mu_align_diff_two_aligned_posterior.jpeg"),width=7,height=5)
+
+
+d %>%
+  mutate(aligned=str_sub(order,1,2)) %>%
+  filter(config!="triangle") %>%
+  mutate(aligned2=case_when(
+    aligned %in% c("wh","hw") ~ "w aligned with h",
+    aligned %in% c("wd","dw") ~ "w aligned with d",
+    aligned %in% c("dh","hd") ~ "h aligned with d",
+  )) %>%
+  mutate(choice_align=case_when(
+    choice_name=="h" & aligned2=="h aligned with d"~"aligned option",
+    choice_name=="w" & aligned2=="h aligned with d"~"non-aligned option",
+    choice_name=="h" & aligned2=="w aligned with d"~"non-aligned option",
+    choice_name=="w" & aligned2=="w aligned with d"~"aligned option",
+    choice_name %in% c("h","w") & aligned2=="w aligned with h"~"aligned option",
+    choice_name=="d"~"decoy"
+  )) %>%
+  select(participant,config,aligned2,choice_name, choice_align) %>%
+  filter(aligned2!="w aligned with h") %>%
+  group_by(participant, config, choice_align) %>%
+  summarise(N=n()) %>%
+  group_by(participant,config) %>%
+  mutate(prop=N/sum(N)) %>%
+  ungroup() %>%
+  select(-N) %>%
+  pivot_wider(names_from = choice_align, values_from = prop) %>%
+  mutate(diff=`aligned option`-`non-aligned option`) %>%
+  select(-c(`aligned option`,decoy,`non-aligned option`)) %>%
+  pivot_wider(names_from = config, values_from = diff) %>%
+  mutate(diff_two_none=`two aligned`-`none aligned`,
+         diff_two_all=`two aligned`-`all aligned`) %>%
+  select(c(participant,diff_two_none,diff_two_all)) %>%
+  pivot_longer(contains("diff")) %>%
+  group_by(name) %>%
+  summarise(m=mean(value),
+            se=sd(value)/sqrt(n()),
+            lower=m-se,
+            upper=m+se) %>%
+  ungroup() %>%
+  ggplot(aes(name,m))+
+  geom_col(position="dodge",fill="lightblue",width=.5)+
+  geom_errorbar(aes(ymin=lower,ymax=upper),position = position_dodge(.5),width=.2)+
+  labs(y="mean choice prop.",x="alignment")+
+  labs(y="mean p(align)-p(non-aligned)",x="configuration")+
+  ggthemes::theme_few()
+
+d %>%
+  mutate(aligned=str_sub(order,1,2)) %>%
+  filter(config!="triangle") %>%
+  mutate(aligned2=case_when(
+    aligned %in% c("wh","hw") ~ "w aligned with h",
+    aligned %in% c("wd","dw") ~ "w aligned with d",
+    aligned %in% c("dh","hd") ~ "h aligned with d",
+  )) %>%
+  select(participant,config,aligned2,choice_name) %>%
+  filter(aligned2!="w aligned with h") %>%
+  group_by(participant, config, aligned2, choice_name) %>%
+  summarise(N=n()) %>%
+  group_by(participant, config, aligned2) %>%
+  mutate(prop=N/sum(N)) %>%
+  select(-N) %>%
+  pivot_wider(names_from = config,
+              values_from = prop, values_fill = 0) %>%
+  mutate(diff_two_all=`two aligned`-`all aligned`,
+         diff_two_none=`two aligned`-`none aligned`) %>%
+  select(-c(aligned2, `all aligned`, `none aligned`, `two aligned`)) %>%
+  pivot_longer(c(diff_two_all,diff_two_none),names_to = "name", values_to = "diff") %>%
+  group_by(choice_name, name) %>%
+  summarise(m=mean(diff),
+            se=sd(diff)/sqrt(n()),
+            lower=m-se,
+            upper=m+se) %>%
+  ungroup() %>%
+  ggplot(aes(choice_name,m,fill=name))+
+  geom_col(position="dodge",width=.5)+
+  geom_errorbar(aes(ymin=lower,ymax=upper),position = position_dodge(.5),width=.2)+
+  # labs(y="mean choice prop.",x="alignment")+
+  labs(y="mean p(align)-p(non-aligned)",x="configuration")+
+  ggthemes::theme_few()
+

@@ -77,6 +77,7 @@ d <- map(f_all, clean) %>%
   list_rbind()
 cat("\nN initial=",length(unique(d$participant)),"\n",sep="")
 dd <- d %>%
-  filter(pass)
+  filter(pass) %>%
+  select(-pass)
 cat("\nN final=",length(unique(dd$participant)),"\n",sep="")
 write_csv(dd, file=here("data","clean","data.csv"))
