@@ -10,6 +10,7 @@ rm(list=ls())
 # libraries
 library(tidyverse)
 library(here)
+library(latex2exp)
 
 # necessary functions
 distance <- function(a,b) sqrt( (a[1]-b[1])^2 + (a[2]-b[2])^2  )
@@ -82,17 +83,21 @@ all_stim <- tibble(
 
 # plotting ======================================================================
 p <- all_stim %>%
-  mutate(name=toupper(name)) %>%
-  ggplot(aes(w,h,col=diag))+
-  geom_text(aes(label=name))+
-  labs(x="Width",y="Height")+
+  mutate(name=TeX(paste0("$",toupper(name),"_{",distance,"}$"),output="character")) %>%
+  ggplot(aes(w,h))+
+  geom_point(aes(color = diag), alpha = 0,show.legend = T)+#invisible, but still include legend
+  geom_text(aes(label=name,col=diag),parse=T,show.legend = F,size=3.5)+
+  labs(x="Width",y="Height",color="Diagonal")+
   scale_color_discrete(name="Diagonal")+
-  scale_x_continuous(breaks=c(0,150,300))+
-  scale_y_continuous(breaks=c(0,150,300))+
-  coord_fixed(xlim=c(0,300),ylim=c(0,300))+
+  # scale_x_continuous(breaks=c(0,150,250))+
+  # scale_y_continuous(breaks=c(0,150,250))+
+  coord_fixed(xlim=c(0,250),ylim=c(0,250))+
   ggthemes::theme_few()+
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank())
+  guides(color = guide_legend(override.aes = list(alpha = 1, shape = 16,size=3)))+
+  theme(
+  axis.text=element_blank(),
+  axis.ticks=element_blank()
+    )
 
 # saving stim ======================================================================
 p

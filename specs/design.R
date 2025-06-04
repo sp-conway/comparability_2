@@ -13,7 +13,7 @@ crit_trials_1 <- bind_rows(
   filter(crit_init,config==2) %>%
     mutate(config=2.1),
   filter(crit_init,config==2) %>%
-    mutate(config=2.1),
+    mutate(config=2.1), # THIS WAS A MISTAKE SHOULD HAVE BEEN 2.2
   filter(crit_init, config!=2)
 ) %>%
   mutate(effect="critical") %>%
