@@ -69,14 +69,17 @@ if(!file_exists(m1_file)){
   load(m1_file)
   load(m1_summary_file)
 }
-m1_summary
+m1_summary[1:4,c("mean","sd","2.5%","97.5%")]
 mcmc_trace(m1,"(Intercept)")
 lp <- log_posterior(m1)
 mcmc_trace(lp,"Value")
 mcmc_hist(m1,"configtwo aligned")+
-  labs(x=TeX("$\\beta_{two aligned}$"))
+  labs(x=TeX("$\\beta_{two\\;aligned}$"))
+
 b_two_aligned <- as.matrix(m1)[,"configtwo aligned"]
+HDInterval::hdi(b_two_aligned)
 mean(b_two_aligned<0)
+
 # mean target choice in none aligned
 plogis(-0.18365)
 # mean target choice in two aligned
